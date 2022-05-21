@@ -1,0 +1,30 @@
+##### This example is using `kitty` to launch the terminal, however you can use any terminal as long as you can define the window class for it
+##### Since you might want to try this config, you don't want to restart/logout from the session to try it.
+##### You can run `nohup kitty sh -c "echo hello, world. Press ENTER to quit; read" >/dev/null 2>&1 &`
+##### Then press $mod+Shift+v to check the terminal
+
+# Initialize some variables since most of them will be shared
+set $helper_terminal.floating.rightside.instance general_rightside
+set $helper_terminal.floating.rightside.width 500
+set $helper_terminal.floating.rightside.height 500
+set $helper_terminal.floating.rightside.position.x 50
+set $helper_terminal.floating.rightside.position.y 50
+
+# Configure this terminal window
+# enable floating and set a border
+for_window [instance="general_rightside"] floating enable, border 1px
+# Set window width and height
+for_window [instance="general_rightside"] resize set $helper_terminal.floating.rightside.width $helper_terminal.floating.rightside.height
+# Hide window
+for_window [instance="general_rightside"] move scratchpad
+
+## Launch // General terminal // <> Shift+v ##
+bindsym $mod+Shift+v exec ~/.local/bin/i3relativewindow \
+  $helper_terminal.floating.rightside.instance \
+  $helper_terminal.floating.rightside.position.x \
+  $helper_terminal.floating.rightside.position.y \
+  $helper_terminal.floating.rightside.width \
+  $helper_terminal.floating.rightside.height
+
+# Start kitty terminal on startup
+exec --no-startup-id kitty sh -c "echo hello, world. Press ENTER to quit; read"
