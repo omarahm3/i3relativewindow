@@ -19,7 +19,7 @@ This is a simple bash script which its only goal is to toggle a window and move 
 # How?
 
 ```bash
-mv i3relativewindow ~/.local/bin/i3relativewindow # Or to your favorite bin location
+mv i3relativewindow.sh ~/.local/bin/i3relativewindow # Or to your favorite bin location
 chmod +x i3relativewindow
 ```
 
